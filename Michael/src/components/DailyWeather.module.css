@@ -1,0 +1,31 @@
+.daily_weather {
+  border: 1px dotted black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.daily_weather_tile {
+  border: 1px solid white;
+  background-color: lightblue;
+  margin: 10px;
+  color: darkblue;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 100px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.sunrise_sunset {
+  width: 2rem;
+  border-radius: 10px;
+  margin: 3px 10px;
+}
+.weather_icons {
+  width: 4rem;
+  margin: 0px 25px;
+  border-radius: 10px;
+}
