@@ -1,31 +1,63 @@
 .daily_weather {
-  border: 1px dotted black;
+  /* border: 1px dotted rgb(178, 20, 20); */
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
+.daily_weather_container {
+  border: 1px dotted rgb(7, 152, 43);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
 .daily_weather_tile {
-  border: 1px solid white;
+  /* border: 1px solid white; */
   background-color: lightblue;
   margin: 10px;
   color: darkblue;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  width: 100px;
-  font-size: 12px;
+  width: 14%;
+  font-size: 15px;
   text-align: center;
+  justify-content: center;
 }
 
-.sunrise_sunset {
-  width: 2rem;
+.daily_weather_today_tile {
+  /* border: 10px solid rgb(253, 253, 253); */
+  background-color: lightblue;
+  margin: 10px;
+  color: darkblue;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 24%;
+  height: 470px;
+  font-size: 15px;
+  text-align: center;
+  justify-content: center;
+}
+
+.weather_icons {
+  width: 5rem;
+  border-radius: 10px;
+}
+
+.sunrise_sunset_today {
+  width: 5rem;
   border-radius: 10px;
   margin: 3px 10px;
 }
-.weather_icons {
-  width: 4rem;
-  margin: 0px 25px;
+.weather_icons_today {
+  width: 7rem;
   border-radius: 10px;
+  /* align-items: center; */
+  /* justify-content: center; */
 }

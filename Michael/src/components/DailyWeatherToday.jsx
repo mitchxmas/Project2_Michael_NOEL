@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./DailyWeather.module.css";
 
-const DailyWeatherPerDay = (props) => {
+const DailyWeatherToday = (props) => {
   const weathercodes = [
     { code: [0], description: "Clear sky", link: "./images/0_clear_sky.png" },
     {
@@ -92,11 +92,27 @@ const DailyWeatherPerDay = (props) => {
   // Output the day and month in the desired format
   const dateDDMM = `${day}/${month}`;
 
+  //Get the date-time from Sunrise
+  const sunriseDateTime = props.weather.daily.sunrise[props.index];
+  const sunriseDate = new Date(sunriseDateTime);
+  const sunriseTime = sunriseDate.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  //Get the date-time from Sunset
+  const sunsetDateTime = props.weather.daily.sunset[props.index];
+  const sunsetDate = new Date(sunsetDateTime);
+  const sunsetTime = sunsetDate.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
     <div
-      className={`container daily_weather_tile ${styles.daily_weather_tile}`}
+      className={`container daily_weather_tile ${styles.daily_weather_today_tile}`}
     >
-      <h5>{daysForecast[props.index]}</h5>
+      <h4>{daysForecast[props.index]}</h4>
       <br />
       <div>{dateDDMM}</div>
       <div>
@@ -104,14 +120,32 @@ const DailyWeatherPerDay = (props) => {
         {props.weather.daily_units.temperature_2m_max}
       </div>
       <div>
+        <img
+          className={`icons ${styles.sunrise_sunset_today}`}
+          src={iconSunrise}
+        ></img>
+        {sunriseTime}
+      </div>
+      <div>
+        <img
+          className={`icons ${styles.sunrise_sunset_today}`}
+          src={iconSunset}
+        ></img>
+        {sunsetTime}
+      </div>
+      <div>UV Index: {props.weather.daily.uv_index_max[props.index]}</div>
+      <div>
         Rainfall: {props.weather.daily.precipitation_sum[props.index]}
         {props.weather.daily_units.precipitation_sum}
       </div>
       <div className="container">
-        <img className={`icons ${styles.weather_icons}`} src={iconLink}></img>
+        <img
+          className={`icons ${styles.weather_icons_today}`}
+          src={iconLink}
+        ></img>
       </div>
     </div>
   );
 };
 
-export default DailyWeatherPerDay;
+export default DailyWeatherToday;

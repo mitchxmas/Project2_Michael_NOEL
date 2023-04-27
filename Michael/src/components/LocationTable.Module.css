@@ -1,0 +1,9 @@
+.location {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+}
+
+.flagicon {
+  width: 5px;
+}
