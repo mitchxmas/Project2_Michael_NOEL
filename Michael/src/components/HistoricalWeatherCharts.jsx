@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
-import { useEffect } from "react";
 
 class HistoricalWeatherCharts extends Component {
   constructor(props) {
     super(props);
 
-    console.table(props.historicalWeather.daily);
     const timeArray = props.historicalWeather.daily.time;
     const tempArray = props.historicalWeather.daily.temperature_2m_max;
     const rainfallArray = props.historicalWeather.daily.precipitation_sum;

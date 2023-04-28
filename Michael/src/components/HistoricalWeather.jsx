@@ -6,9 +6,6 @@ import Button from "react-bootstrap/Button";
 import { useEffect } from "react";
 
 const HistoricalWeather = (props) => {
-  console.log("dateFrom", props.dateFrom);
-  console.log("dateTo", props.dateTo);
-
   useEffect(() => {
     props.getHistoricalWeather();
   }, [props.dateFrom]);

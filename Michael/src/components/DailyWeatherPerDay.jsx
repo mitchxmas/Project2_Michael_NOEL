@@ -66,8 +66,6 @@ const DailyWeatherPerDay = (props) => {
   });
 
   const iconLink = findWeatherCode.link;
-  const iconSunrise = "./images/sunrise.png";
-  const iconSunset = "./images/sunset.png";
 
   const daysForecast = [
     "D-3",

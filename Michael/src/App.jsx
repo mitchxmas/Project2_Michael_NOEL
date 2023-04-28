@@ -4,14 +4,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import InputGroup from "react-bootstrap/InputGroup";
-import LocationSelection from "./components/LocationSelection";
 import DailyWeather from "./components/DailyWeather";
 import HourlyWeather from "./components/HourlyWeather";
 import HistoricalWeather from "./components/HistoricalWeather";
 import Introduction from "./components/Introduction";
 import NavBar from "./components/NavBar";
 import LocationTable from "./components/LocationTable";
-import styles from "./components/LocationSelection.module.css";
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -27,13 +25,9 @@ function App() {
   const [dateFrom, setDateFrom] = useState("2022-10-01");
   const [dateTo, setDateTo] = useState("2023-04-22");
 
-  const handleClick = () => {
+  const handleSearchClick = () => {
     setOpen(true);
     getLocations();
-  };
-
-  const adjustDates = () => {
-    getHistoricalWeather();
   };
 
   const toggleTempUnit = () => {
@@ -59,6 +53,8 @@ function App() {
     setSearch("");
   };
 
+  // This function handles the selection of a city within the proposed locations.
+  // All city data is lifted to handleSelect, in order to populate the city state, which is used in many other components
   const handleSelect = (id, lat, lng, flagSrc) => {
     // Collapse the locations table
     setOpen(!open);
@@ -115,6 +111,8 @@ function App() {
     setWeather(data);
   };
 
+  // API getting the HOURLY weather information for the selected city, based on latitude, longitude and timezone.
+  // All weather parameters chosen are directly inside the URL address (ex: precipitation)
   const getHourlyWeather = async () => {
     let tempUnitURL = tempUnitCheckbox ? "&temperature_unit=fahrenheit" : "";
     let windspeedUnitURL = windspeedUnitCheckbox ? "&windspeed_unit=kn" : "";
@@ -138,12 +136,11 @@ function App() {
     const res = await fetch(url);
     const data = await res.json();
 
-    // console.log("Hourly URL", url);
-    // console.table("Hourly data", data.hourly);
-
     setHourlyWeather(data);
   };
 
+  // API getting the HISTORICAL weather information for the selected city, based on latitude, longitude and timezone.
+  // All weather parameters chosen are directly inside the URL address
   const getHistoricalWeather = async () => {
     let tempUnitURL = tempUnitCheckbox ? "&temperature_unit=fahrenheit" : "";
     let windspeedUnitURL = windspeedUnitCheckbox ? "&windspeed_unit=kn" : "";
@@ -179,6 +176,11 @@ function App() {
     setHistoricalWeather(data);
   };
 
+  // this function adjust the date range used in the Historical Weather API, based on user input which is lifted from the HIstorical Weather component
+  const adjustDates = () => {
+    getHistoricalWeather();
+  };
+
   useEffect(() => {
     if (open) {
       getLocations();
@@ -206,12 +208,6 @@ function App() {
   return (
     <div>
       <div>
-        {/* <img
-          className="logo"
-          width="100"
-          src="./images/michaels_weatherLogo.png"
-          alt=""
-        /> */}
         <div className="container">
           <div className="container searchBar">
             <InputGroup className="mb-3">
@@ -226,7 +222,7 @@ function App() {
                 onChange={(event) => setSearch(event.target.value)}
               />
               <Button
-                onClick={handleClick}
+                onClick={handleSearchClick}
                 variant="secondary"
                 aria-controls="example-collapse-text"
                 aria-expanded={open}
